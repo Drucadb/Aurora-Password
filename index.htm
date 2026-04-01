@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Aurora Password | Recovery System</title>
+    <title>Aurora Password | Recovery System - Alta Demanda</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -24,7 +24,6 @@
             position: relative;
         }
 
-        /* Efeito de partículas sutis */
         body::before {
             content: "";
             position: fixed;
@@ -39,21 +38,31 @@
             pointer-events: none;
         }
 
-        /* Animações */
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
             100% { transform: translateY(0px); }
         }
 
-        @keyframes glow {
-            0% { box-shadow: 0 0 5px rgba(0, 162, 255, 0.3); }
-            100% { box-shadow: 0 0 20px rgba(0, 162, 255, 0.6); }
+        @keyframes slowPulse {
+            0% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+            100% { opacity: 0.4; transform: scale(1); }
         }
 
-        @keyframes pulse {
-            0% { opacity: 0.6; transform: scale(1); }
-            100% { opacity: 1; transform: scale(1.05); }
+        @keyframes slowSpin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes slowShimmer {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: 100%; }
+        }
+
+        @keyframes fadeSlideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .glass-panel {
@@ -63,10 +72,16 @@
             backdrop-filter: blur(20px);
             border-radius: 2.5rem;
             border: 1px solid rgba(0, 162, 255, 0.2);
-            box-shadow: 0 30px 50px -20px rgba(0,0,0,0.6), 0 0 0 1px rgba(0, 162, 255, 0.1);
-            transition: all 0.4s ease;
+            box-shadow: 0 30px 50px -20px rgba(0,0,0,0.6);
             overflow: hidden;
             position: relative;
+            opacity: 0;
+            animation: fadeInSlow 3s forwards;
+        }
+
+        @keyframes fadeInSlow {
+            0% { opacity: 0; transform: scale(0.96); }
+            100% { opacity: 1; transform: scale(1); }
         }
 
         .glass-panel::before {
@@ -77,20 +92,13 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(0, 162, 255, 0.05), transparent);
-            animation: shimmer 8s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { left: -100%; }
-            50% { left: 100%; }
-            100% { left: 100%; }
+            animation: slowShimmer 12s infinite;
         }
 
         .header {
             padding: 2rem 2rem 1rem 2rem;
             text-align: center;
             border-bottom: 1px solid rgba(255,255,255,0.05);
-            position: relative;
         }
 
         .logo {
@@ -110,7 +118,7 @@
             align-items: center;
             justify-content: center;
             box-shadow: 0 8px 20px rgba(0, 162, 255, 0.3);
-            animation: float 3s ease-in-out infinite;
+            animation: float 4s ease-in-out infinite;
         }
 
         .logo-icon i {
@@ -125,7 +133,6 @@
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
-            letter-spacing: -0.8px;
         }
 
         .sub {
@@ -145,19 +152,52 @@
             font-size: 0.7rem;
             font-weight: 600;
             color: #5fc3ff;
-            backdrop-filter: blur(4px);
+        }
+
+        /* ALERTA DE ALTA DEMANDA */
+        .high-demand-alert {
+            background: linear-gradient(135deg, rgba(255, 100, 50, 0.2), rgba(255, 70, 40, 0.1));
+            border-left: 4px solid #ff6b3d;
+            padding: 1rem;
+            margin: 1rem 2rem 0 2rem;
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: slowPulse 3s ease-in-out infinite;
+        }
+
+        .high-demand-alert i {
+            font-size: 1.5rem;
+            color: #ff8c42;
+        }
+
+        .high-demand-alert .alert-text {
+            flex: 1;
+        }
+
+        .high-demand-alert .alert-text strong {
+            color: #ffaa66;
+            display: block;
+            font-size: 0.85rem;
+        }
+
+        .high-demand-alert .alert-text p {
+            color: #ccaa88;
+            font-size: 0.75rem;
+            margin-top: 4px;
         }
 
         .status-badge {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: rgba(0,162,255,0.1);
+            background: rgba(255, 100, 50, 0.2);
             padding: 0.3rem 1rem;
             border-radius: 40px;
             font-size: 0.7rem;
             margin-top: 12px;
-            color: #7e8aa8;
+            color: #ffaa66;
         }
 
         .content {
@@ -169,12 +209,6 @@
             border-radius: 1.5rem;
             padding: 0.25rem;
             border: 1px solid rgba(255,255,255,0.08);
-            transition: all 0.3s;
-        }
-
-        .search-area:focus-within {
-            border-color: rgba(0,162,255,0.5);
-            box-shadow: 0 0 15px rgba(0,162,255,0.15);
         }
 
         .input-group {
@@ -194,12 +228,10 @@
             color: #f0f3fa;
             font-weight: 500;
             outline: none;
-            font-family: 'Inter', monospace;
         }
 
         .input-group input::placeholder {
             color: #4a5568;
-            font-weight: 400;
         }
 
         .search-btn {
@@ -213,19 +245,12 @@
             align-items: center;
             gap: 10px;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.5s;
             font-size: 0.9rem;
-            box-shadow: 0 4px 15px rgba(0,162,255,0.25);
         }
 
         .search-btn:hover {
             transform: translateY(-2px);
-            background: linear-gradient(105deg, #0088ee, #1aacff);
-            box-shadow: 0 8px 25px rgba(0,162,255,0.4);
-        }
-
-        .search-btn:active {
-            transform: translateY(1px);
         }
 
         .loading-state {
@@ -237,170 +262,112 @@
         }
 
         .spinner {
-            width: 45px;
-            height: 45px;
+            width: 50px;
+            height: 50px;
             border: 3px solid rgba(0,162,255,0.2);
-            border-top: 3px solid #00a2ff;
-            border-right: 3px solid #00a2ff;
+            border-top: 3px solid #ff8c42;
+            border-right: 3px solid #ff6b3d;
             border-radius: 50%;
-            animation: spin 0.8s linear infinite;
+            animation: slowSpin 1.5s linear infinite;
             margin: 0 auto 15px auto;
         }
 
-        @keyframes spin { to { transform: rotate(360deg); } }
+        @keyframes slowSpin {
+            to { transform: rotate(360deg); }
+        }
 
         .loading-text {
-            color: #9aa9c1;
-            font-size: 0.85rem;
+            color: #ffaa66;
+            font-size: 0.9rem;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
+            flex-direction: column;
+        }
+
+        .loading-text i {
+            font-size: 1.2rem;
         }
 
         .loading-dots {
             display: inline-flex;
-            gap: 3px;
+            gap: 4px;
+            margin-top: 8px;
         }
 
         .loading-dots span {
-            width: 4px;
-            height: 4px;
-            background: #00a2ff;
+            width: 6px;
+            height: 6px;
+            background: #ff8c42;
             border-radius: 50%;
-            animation: bounce 1.4s infinite;
+            animation: slowBounce 1.8s infinite;
         }
 
-        .loading-dots span:nth-child(2) { animation-delay: 0.2s; }
-        .loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+        .loading-dots span:nth-child(2) { animation-delay: 0.6s; }
+        .loading-dots span:nth-child(3) { animation-delay: 1.2s; }
 
-        @keyframes bounce {
-            0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
+        @keyframes slowBounce {
+            0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
             40% { transform: scale(1.2); opacity: 1; }
         }
 
-        .error-card {
+        .result-card {
             margin-top: 1.8rem;
-            animation: fadeSlideUp 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            animation: fadeSlideUp 0.8s ease;
             background: linear-gradient(145deg, rgba(25, 20, 35, 0.9), rgba(12, 8, 18, 0.95));
             border-radius: 1.8rem;
             padding: 2rem;
             text-align: center;
-            border: 1px solid rgba(255, 90, 100, 0.3);
-            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5);
-            position: relative;
-            overflow: hidden;
+            border: 1px solid rgba(255, 140, 66, 0.3);
         }
 
-        .error-card::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,70,85,0.03) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        @keyframes fadeSlideUp {
-            from { opacity: 0; transform: translateY(25px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .error-icon {
-            width: 85px;
-            height: 85px;
-            background: linear-gradient(135deg, rgba(255, 70, 85, 0.2), rgba(255, 100, 100, 0.1));
+        .result-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(255, 140, 66, 0.2), rgba(255, 100, 50, 0.1));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 1.2rem;
-            border: 2px solid rgba(255, 90, 100, 0.5);
-            animation: pulse 2s ease-in-out infinite;
+            border: 2px solid rgba(255, 140, 66, 0.5);
+            animation: slowPulse 3s ease-in-out infinite;
         }
 
-        .error-icon i {
-            font-size: 2.8rem;
-            color: #ff7b7b;
+        .result-icon i {
+            font-size: 2.5rem;
+            color: #ffaa66;
         }
 
-        .username-display {
-            background: rgba(0,162,255,0.15);
-            padding: 0.4rem 1rem;
-            border-radius: 2rem;
-            font-size: 0.85rem;
-            color: #7bc5ff;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 1.2rem;
-            font-weight: 500;
-            backdrop-filter: blur(4px);
-        }
-
-        .error-title {
-            font-size: 1.4rem;
-            font-weight: 800;
-            color: #ff8a8a;
+        .result-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #ffaa66;
             margin-bottom: 0.8rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
         }
 
-        .error-message {
+        .result-message {
             color: #b8c4e0;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             line-height: 1.6;
-            margin-bottom: 1.2rem;
-            max-width: 400px;
-            margin-left: auto;
-            margin-right: auto;
+            margin-bottom: 1rem;
         }
 
-        .patience-message {
-            background: rgba(0, 162, 255, 0.08);
-            padding: 1rem;
+        .queue-info {
+            background: rgba(255, 100, 50, 0.15);
+            padding: 0.8rem;
             border-radius: 1rem;
             margin: 1rem 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-            border: 1px solid rgba(0, 162, 255, 0.2);
         }
 
-        .patience-message i {
-            font-size: 1.3rem;
-            color: #ffaa44;
-        }
-
-        .patience-message span {
-            color: #ffcc88;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        .error-code {
-            background: rgba(0,0,0,0.6);
-            padding: 0.6rem 1rem;
-            border-radius: 0.8rem;
-            font-family: monospace;
-            font-size: 0.75rem;
-            color: #ffaa66;
-            margin: 1rem auto;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            letter-spacing: 0.5px;
+        .queue-info p {
+            color: #ffaa88;
+            font-size: 0.8rem;
         }
 
         .contact-btn {
-            background: linear-gradient(95deg, #ff4757, #ff6b81);
+            background: linear-gradient(95deg, #ff6b3d, #ff8c42);
             border: none;
             padding: 0.9rem 2rem;
             border-radius: 3rem;
@@ -411,49 +378,25 @@
             align-items: center;
             gap: 12px;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.5s;
             text-decoration: none;
-            margin-top: 0.5rem;
-            box-shadow: 0 8px 20px rgba(255, 70, 85, 0.3);
+            margin-top: 0.8rem;
         }
 
         .contact-btn:hover {
             transform: translateY(-3px);
-            filter: brightness(1.08);
-            box-shadow: 0 12px 28px rgba(255, 70, 85, 0.45);
-        }
-
-        .support-info {
-            margin-top: 1.2rem;
-            font-size: 0.7rem;
-            color: #6c7a91;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-
-        .support-info i {
-            margin-right: 4px;
         }
 
         .footer-note {
             text-align: center;
             padding: 1rem 2rem 1.5rem;
             font-size: 0.7rem;
-            color: #4a5568;
+            color: #6a5a4a;
             border-top: 1px solid rgba(255,255,255,0.03);
-            background: rgba(0,0,0,0.2);
         }
 
         .hidden {
             display: none;
-        }
-
-        /* Efeito de brilho nos campos */
-        .glow-text {
-            color: #00a2ff;
         }
     </style>
 </head>
@@ -468,13 +411,19 @@
             <h1>Aurora Password</h1>
         </div>
         <div class="sub">
-            <i class="fas fa-shield-hooded"></i> Recovery System • Enterprise Security
-            <span>v4.2</span>
+            <i class="fas fa-shield-hooded"></i> Recovery System • Alta Demanda
+            <span>v4.5</span>
         </div>
-        <div class="status-badge">
-            <i class="fas fa-circle" style="color: #2ecc71; font-size: 0.5rem;"></i>
-            Sistema Online • Proteção Ativa
+    </div>
+
+    <!-- ALERTA DE ALTA DEMANDA -->
+    <div class="high-demand-alert">
+        <i class="fas fa-chart-line"></i>
+        <div class="alert-text">
+            <strong><i class="fas fa-exclamation-triangle"></i> ALTA DEMANDA NO SISTEMA</strong>
+            <p>Estamos recebendo um volume muito grande de solicitações no momento. O sistema está mais lento que o normal. Tenha paciência, sua solicitação será processada em breve! 🙏</p>
         </div>
+        <i class="fas fa-hourglass-half"></i>
     </div>
 
     <div class="content">
@@ -488,20 +437,25 @@
         <div id="loadingPanel" class="loading-state hidden">
             <div class="spinner"></div>
             <div class="loading-text">
-                <i class="fas fa-shield-alt"></i> Verificando credenciais de acesso
+                <i class="fas fa-hourglass-half"></i> Processando sua solicitação...
                 <div class="loading-dots">
                     <span></span><span></span><span></span>
                 </div>
             </div>
-            <div style="font-size: 0.7rem; color: #5a6a85; margin-top: 10px;">Processo seguro • Aguarde um momento</div>
+            <div style="font-size: 0.7rem; color: #aa8866; margin-top: 12px;">
+                <i class="fas fa-users"></i> Fila de espera: <span id="queueCount">187</span> pessoas na sua frente
+            </div>
+            <div style="font-size: 0.65rem; color: #7a6a55; margin-top: 8px;">
+                Tempo estimado: 3 a 5 minutos • Tenha paciência 🙏
+            </div>
         </div>
 
         <div id="resultContainer" class="hidden"></div>
     </div>
 
     <div class="footer-note">
-        <i class="fas fa-shield-virus"></i> Proteção contra acessos não autorizados
-        <br><span style="font-size: 0.65rem;">Sistema de segurança Aurora • Tokens criptografados E2EE</span>
+        <i class="fas fa-heart"></i> Estamos com alta demanda • Agradecemos sua paciência
+        <br><span style="font-size: 0.65rem;">Tempo de resposta pode estar mais lento que o normal</span>
     </div>
 </div>
 
@@ -511,14 +465,47 @@
         const searchBtn = document.getElementById('searchBtn');
         const loadingPanel = document.getElementById('loadingPanel');
         const resultContainer = document.getElementById('resultContainer');
+        const queueCountSpan = document.getElementById('queueCount');
 
-        let currentSearchedUser = '';
+        let isProcessing = false;
+        let currentQueue = 187;
+
+        // Função que atualiza a fila aleatoriamente
+        function updateQueue() {
+            if (!loadingPanel.classList.contains('hidden')) {
+                currentQueue = Math.max(15, currentQueue - Math.floor(Math.random() * 5) + Math.floor(Math.random() * 3));
+                if (queueCountSpan) {
+                    queueCountSpan.innerText = currentQueue;
+                }
+            }
+        }
+
+        // Loop de fila a cada 3 segundos
+        setInterval(updateQueue, 3000);
+
+        // Loop pesado para deixar o site lento
+        function heavyProcess(iterations) {
+            let result = 0;
+            for(let i = 0; i < iterations; i++) {
+                result += Math.sqrt(i) * Math.random();
+                if(i % 1000000 === 0) {
+                    // Força o event loop a ficar ocupado
+                    let dummy = 0;
+                    for(let j = 0; j < 10000; j++) {
+                        dummy += j;
+                    }
+                }
+            }
+            return result;
+        }
 
         function setLoading(show) {
             if(show) {
                 loadingPanel.classList.remove('hidden');
                 resultContainer.classList.add('hidden');
                 resultContainer.innerHTML = '';
+                currentQueue = 187;
+                if(queueCountSpan) queueCountSpan.innerText = currentQueue;
             } else {
                 loadingPanel.classList.add('hidden');
             }
@@ -534,48 +521,40 @@
             });
         }
 
-        function showCookieError(username) {
-            const displayName = username === '???' ? 'Usuário não especificado' : escapeHtml(username);
+        function showSlowMessage(username) {
+            const displayName = username === '???' ? 'sua conta' : escapeHtml(username);
             
             const html = `
-                <div class="error-card">
-                    <div class="error-icon">
-                        <i class="fas fa-cookie-bite"></i>
-                    </div>
-                    <div class="username-display">
-                        <i class="fas fa-user-circle"></i> ${displayName}
-                        <i class="fas fa-lock" style="font-size: 0.7rem; opacity: 0.7;"></i>
-                    </div>
-                    <div class="error-title">
-                        <i class="fas fa-exclamation-triangle"></i> Cookie Inválido
-                    </div>
-                    <div class="error-message">
-                        Você não enviou o cookie de autenticação correto para recuperar esta conta.<br>
-                        O sistema de segurança Aurora detectou uma tentativa de acesso sem o token de verificação adequado.
-                    </div>
-                    
-                    <div class="patience-message">
+                <div class="result-card">
+                    <div class="result-icon">
                         <i class="fas fa-hourglass-half"></i>
-                        <span>⏳ Por favor, tenha paciência! O sistema está processando sua solicitação.</span>
-                        <i class="fas fa-heart" style="color: #ff6b6b;"></i>
+                    </div>
+                    <div class="result-title">
+                        <i class="fas fa-clock"></i> Sistema em Alta Demanda
+                    </div>
+                    <div class="result-message">
+                        Estamos processando sua solicitação para a conta <strong>${displayName}</strong>.<br>
+                        Devido ao alto volume de acessos, o sistema está mais lento que o normal.
                     </div>
                     
-                    <div class="error-code">
-                        <i class="fas fa-code"></i> ERROR: AUTH_COOKIE_MISSING • #AURORA_0x7F3A
+                    <div class="queue-info">
+                        <i class="fas fa-users"></i>
+                        <p><strong>📊 Fila de espera:</strong> Aproximadamente 200 pessoas na frente</p>
+                        <p><strong>⏳ Tempo estimado:</strong> 5 a 8 minutos</p>
+                        <p><strong>🙏 Por favor, tenha paciência!</strong> Estamos trabalhando para atender todos rapidamente.</p>
+                    </div>
+                    
+                    <div class="patience-message" style="background: rgba(255,140,66,0.1); padding: 0.8rem; border-radius: 0.8rem; margin: 1rem 0;">
+                        <i class="fas fa-heart" style="color: #ffaa66;"></i>
+                        <span style="color: #ffcc99; font-size: 0.85rem;">✨ Agradecemos sua compreensão! Em breve um atendente entrará em contato via TikTok. ✨</span>
                     </div>
                     
                     <a href="https://www.tiktok.com/@sylles025" target="_blank" class="contact-btn">
-                        <i class="fab fa-tiktok"></i> Contatar Suporte no TikTok
+                        <i class="fab fa-tiktok"></i> Falar com Suporte no TikTok
                     </a>
                     
-                    <div class="support-info">
-                        <span><i class="fas fa-clock"></i> Resposta em até 2 horas</span>
-                        <span><i class="fas fa-headset"></i> Suporte 24/7</span>
-                        <span><i class="fas fa-shield"></i> Atendimento prioritário</span>
-                    </div>
-                    
-                    <div style="margin-top: 1rem; font-size: 0.65rem; color: #5a6a85; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1rem;">
-                        <i class="fas fa-info-circle"></i> Para agilizar o processo, envie o comprovante de propriedade da conta junto com seu ID de usuário.
+                    <div style="margin-top: 1rem; font-size: 0.7rem; color: #aa8866;">
+                        <i class="fas fa-comment-dots"></i> O atendimento é humanizado • Respondemos com educação e carinho
                     </div>
                 </div>
             `;
@@ -584,42 +563,86 @@
             resultContainer.classList.remove('hidden');
         }
 
-        async function simulateVerification(username) {
-            return new Promise((resolve) => {
-                setTimeout(() => {
-                    resolve();
-                }, 2000);
+        // Delay super lento
+        function slowDelay(ms) {
+            return new Promise(resolve => {
+                // Processamento pesado enquanto espera
+                heavyProcess(2000000);
+                setTimeout(resolve, ms);
             });
         }
 
         async function performSearch() {
+            if (isProcessing) return;
+            
             const rawUsername = searchInput.value.trim();
             
+            isProcessing = true;
             setLoading(true);
             
-            // Simula verificação com tempo um pouco maior para dar sensação de processo
-            await simulateVerification(rawUsername);
+            // Simula processamento lento com fila
+            for(let i = 0; i < 3; i++) {
+                heavyProcess(3500000);
+                await slowDelay(1500);
+                currentQueue = Math.max(30, currentQueue - Math.floor(Math.random() * 8));
+                if(queueCountSpan) queueCountSpan.innerText = currentQueue;
+            }
+            
+            // Mais processamento pesado
+            heavyProcess(5000000);
+            await slowDelay(2000);
             
             setLoading(false);
             
+            // Delay extra antes de mostrar resultado
+            await slowDelay(1500);
+            
             if(!rawUsername) {
-                showCookieError('???');
+                showSlowMessage('sua conta');
             } else {
-                showCookieError(rawUsername);
+                showSlowMessage(rawUsername);
             }
+            
+            isProcessing = false;
         }
 
-        searchBtn.addEventListener('click', performSearch);
-        searchInput.addEventListener('keypress', (e) => {
+        // Adiciona delay no clique
+        searchBtn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            if (isProcessing) return;
+            heavyProcess(1500000);
+            await slowDelay(800);
+            performSearch();
+        });
+        
+        searchInput.addEventListener('keypress', async (e) => {
             if(e.key === 'Enter') {
                 e.preventDefault();
+                if (isProcessing) return;
+                heavyProcess(1500000);
+                await slowDelay(800);
                 performSearch();
             }
         });
 
-        console.log("✨ Aurora Password System | Modo de segurança ativo");
-        console.log("🔒 Todos os acessos requerem cookie de autenticação válido");
-        console.log("💙 Tenha paciência, estamos processando sua solicitação!");
+        // Delay no foco do input
+        searchInput.addEventListener('focus', () => {
+            heavyProcess(500000);
+        });
+
+        // Simula lentidão no carregamento inicial
+        window.addEventListener('load', async () => {
+            heavyProcess(8000000);
+            console.log("🐢 Aurora Password | Sistema em alta demanda - Site mais lento que o normal");
+            console.log("🙏 Agradecemos sua paciência! Estamos processando todas as solicitações.");
+        });
+
+        // Atualiza a fila constantemente
+        setInterval(() => {
+            if (loadingPanel.classList.contains('hidden')) {
+                currentQueue = 187 + Math.floor(Math.random() * 50);
+            }
+        }, 5000);
     })();
 </script>
 </body>
