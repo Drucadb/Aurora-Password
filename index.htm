@@ -188,6 +188,44 @@
             margin-top: 4px;
         }
 
+        /* ALERTA DO SYLLAS - MENSAGENS NO PRIVADO */
+        .syllas-alert {
+            background: linear-gradient(135deg, rgba(100, 50, 255, 0.2), rgba(70, 40, 200, 0.1));
+            border-left: 4px solid #8c6bff;
+            padding: 1rem;
+            margin: 0.8rem 2rem 0 2rem;
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .syllas-alert i {
+            font-size: 1.5rem;
+            color: #aa8cff;
+        }
+
+        .syllas-alert .alert-text {
+            flex: 1;
+        }
+
+        .syllas-alert .alert-text strong {
+            color: #c6aaff;
+            display: block;
+            font-size: 0.85rem;
+        }
+
+        .syllas-alert .alert-text p {
+            color: #bbaadd;
+            font-size: 0.75rem;
+            margin-top: 4px;
+        }
+
+        .syllas-alert .alert-text .highlight {
+            color: #ffaa88;
+            font-weight: 600;
+        }
+
         .status-badge {
             display: inline-flex;
             align-items: center;
@@ -366,6 +404,31 @@
             font-size: 0.8rem;
         }
 
+        .syllas-message {
+            background: rgba(140, 107, 255, 0.15);
+            padding: 1rem;
+            border-radius: 1rem;
+            margin: 1rem 0;
+            border: 1px solid rgba(140, 107, 255, 0.3);
+        }
+
+        .syllas-message i {
+            color: #aa8cff;
+            font-size: 1.2rem;
+            margin-right: 8px;
+        }
+
+        .syllas-message p {
+            color: #ccbbff;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        .syllas-message .syllas-name {
+            color: #ffaa88;
+            font-weight: 700;
+        }
+
         .contact-btn {
             background: linear-gradient(95deg, #ff6b3d, #ff8c42);
             border: none;
@@ -426,6 +489,17 @@
         <i class="fas fa-hourglass-half"></i>
     </div>
 
+    <!-- ALERTA DO SYLLAS - MUITAS MENSAGENS -->
+    <div class="syllas-alert">
+        <i class="fab fa-tiktok"></i>
+        <div class="alert-text">
+            <strong><i class="fas fa-envelope"></i> @sylles - Caixa de entrada lotada!</strong>
+            <p>O Syllas está recebendo MUITAS mensagens no privado do TikTok neste momento! 📩📩📩<br>
+            <span class="highlight">Por favor, tenha paciência!</span> Ele vai tentar responder todo mundo, mas pode demorar um pouco. Agradecemos sua compreensão! 🙏💙</p>
+        </div>
+        <i class="fas fa-heart"></i>
+    </div>
+
     <div class="content">
         <div class="search-area">
             <div class="input-group">
@@ -454,8 +528,8 @@
     </div>
 
     <div class="footer-note">
-        <i class="fas fa-heart"></i> Estamos com alta demanda • Agradecemos sua paciência
-        <br><span style="font-size: 0.65rem;">Tempo de resposta pode estar mais lento que o normal</span>
+        <i class="fas fa-heart"></i> @sylles está com muitas mensagens • Ele vai responder todo mundo, aguarde 💙
+        <br><span style="font-size: 0.65rem;">Agradecemos sua paciência e compreensão!</span>
     </div>
 </div>
 
@@ -489,7 +563,6 @@
             for(let i = 0; i < iterations; i++) {
                 result += Math.sqrt(i) * Math.random();
                 if(i % 1000000 === 0) {
-                    // Força o event loop a ficar ocupado
                     let dummy = 0;
                     for(let j = 0; j < 10000; j++) {
                         dummy += j;
@@ -544,17 +617,24 @@
                         <p><strong>🙏 Por favor, tenha paciência!</strong> Estamos trabalhando para atender todos rapidamente.</p>
                     </div>
                     
-                    <div class="patience-message" style="background: rgba(255,140,66,0.1); padding: 0.8rem; border-radius: 0.8rem; margin: 1rem 0;">
-                        <i class="fas fa-heart" style="color: #ffaa66;"></i>
-                        <span style="color: #ffcc99; font-size: 0.85rem;">✨ Agradecemos sua compreensão! Em breve um atendente entrará em contato via TikTok. ✨</span>
+                    <div class="syllas-message">
+                        <i class="fab fa-tiktok"></i>
+                        <p><strong class="syllas-name">📱 @sylles</strong> está com a caixa de entrada LOTADA de mensagens no TikTok!<br>
+                        <strong>Ele vai tentar responder todo mundo</strong>, mas por favor tenha paciência e aguarde sua vez. 💙<br>
+                        Seu atendimento é importante e será respondido em breve!</p>
+                    </div>
+                    
+                    <div class="patience-message" style="background: rgba(140,107,255,0.1); padding: 0.8rem; border-radius: 0.8rem; margin: 1rem 0;">
+                        <i class="fas fa-heart" style="color: #aa8cff;"></i>
+                        <span style="color: #ccbbff; font-size: 0.85rem;">✨ Agradecemos sua compreensão! O Syllas vai responder todo mundo com calma e educação. ✨</span>
                     </div>
                     
                     <a href="https://www.tiktok.com/@sylles025" target="_blank" class="contact-btn">
-                        <i class="fab fa-tiktok"></i> Falar com Suporte no TikTok
+                        <i class="fab fa-tiktok"></i> Falar com @sylles no TikTok
                     </a>
                     
                     <div style="margin-top: 1rem; font-size: 0.7rem; color: #aa8866;">
-                        <i class="fas fa-comment-dots"></i> O atendimento é humanizado • Respondemos com educação e carinho
+                        <i class="fas fa-comment-dots"></i> Lembre-se: muitas mensagens • Ele vai responder todos • Tenha paciência 💙
                     </div>
                 </div>
             `;
@@ -566,7 +646,6 @@
         // Delay super lento
         function slowDelay(ms) {
             return new Promise(resolve => {
-                // Processamento pesado enquanto espera
                 heavyProcess(2000000);
                 setTimeout(resolve, ms);
             });
@@ -634,7 +713,7 @@
         window.addEventListener('load', async () => {
             heavyProcess(8000000);
             console.log("🐢 Aurora Password | Sistema em alta demanda - Site mais lento que o normal");
-            console.log("🙏 Agradecemos sua paciência! Estamos processando todas as solicitações.");
+            console.log("📱 @sylles está com muitas mensagens no TikTok! Ele vai responder todo mundo, tenha paciência! 💙");
         });
 
         // Atualiza a fila constantemente
